@@ -4,8 +4,10 @@ pipeline{
     
     tools{
    		 maven 'maven'
+    }
     
    stages {
+   
         stage('Build') {
             steps {
                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
@@ -16,6 +18,8 @@ pipeline{
                     junit '**/target/surefire-reports/TEST-*.xml'
                     archiveArtifacts 'target/*.jar'
                 }
+        	}
+        }
         
         stage("Deploy to Dev"){
             steps{
@@ -96,10 +100,7 @@ pipeline{
                 echo("deploy to PROD")
             }
         }
-        
-        
-        
-    }
-    
-    
+         
+	}
+
 }
